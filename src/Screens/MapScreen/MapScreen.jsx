@@ -11,23 +11,36 @@ import { CORDINATES } from "utiles/defaultCordinates";
 
 const MapScreen = () => {
   const [data, setData] = useState([]);
+  const [selected, setSelected] = useState(false);
 
+  //getData on First mount
   useEffect(() => {
     getProperties(setData);
   }, []);
 
-  console.log(CORDINATES);
-
   return (
     <View style={styles.container}>
       <MapView style={styles.map} initialRegion={CORDINATES}>
-        <Marker
-          longitude={data?.location?.lng}
-          latitude={data?.location?.lat}
-        />
+        {data?.map((item) => (
+          <Marker
+            longitude={item?.location?.lng}
+            latitude={item?.location?.lat}
+            onPress={setSelected} //setsSelected an item which will be pressed
+            item={item}
+            selected={selected?.id === item?.id} //check which item is pressed
+            key={item?.id}
+          />
+        ))}
       </MapView>
-      <MapCard title={"asd"} />
-      {/* <View style={styles.searchBox}><Text>asd</Text></View> */}
+      {selected && (
+        <MapCard
+          title={selected?.name}
+          images={selected?.images}
+          priceFrom={"55€/Night"}
+          location={selected?.location?.addressLine1}
+          rating={"4.5"}
+        />
+      )}
     </View>
   );
 };
