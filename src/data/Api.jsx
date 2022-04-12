@@ -3,7 +3,7 @@ const BASE_API = "https://api.limehome.com/";
 export const getProperties = async (setData) => {
   try {
     let response = await fetch(
-      `${BASE_API}properties/v1/public/properties/210`
+      `${BASE_API}properties/v1/public/properties/?cityId=32&adults=1`
     );
     let json = await response.json();
 
