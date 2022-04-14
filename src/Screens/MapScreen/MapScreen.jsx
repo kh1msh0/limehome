@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { View } from "react-native";
 import MapView from "react-native-maps";
 import React, { useEffect, useState } from "react";
 
-import { MapCard, Marker } from "components";
-
-import { styles } from "./Styles.jsx";
+import { MapCard, Marker, HotelModal } from "components";
+import { CORDINATES } from "utiles/defaultCordinates";
 import { getProperties } from "data/Api.jsx";
 
-import { CORDINATES } from "utiles/defaultCordinates";
+import { styles } from "./Styles.jsx";
 
 const MapScreen = () => {
   const [data, setData] = useState([]);
   const [selected, setSelected] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   //getData on First mount
   useEffect(() => {
@@ -39,8 +39,10 @@ const MapScreen = () => {
           priceFrom={"55€/Night"}
           location={selected?.location?.addressLine1}
           rating={"4.5"}
+          onPress={() => setModalVisible(!modalVisible)}
         />
       )}
+      <HotelModal visible={modalVisible} item={selected} setVisible={setModalVisible}/>
     </View>
   );
 };
