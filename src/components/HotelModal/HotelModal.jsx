@@ -1,31 +1,57 @@
 import { StyleSheet, Text, View, Modal, SafeAreaView } from "react-native";
 import React from "react";
 
-import { ImageSlider } from "components";
+import { ImageSlider, Tags } from "components";
+
+import { EvilIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 import { styles } from "./Styles";
+import PriceButton from "../PriceButton/PriceButton";
 
 const HotelModal = (props) => {
   const { visible, item, setVisible } = props;
 
   return (
     <Modal visible={visible}>
-      <ImageSlider images={item?.images} onPress={() => setVisible(false)} />
-      <Text style={styles.title}>{item?.name}</Text>
-      <Text>{item?.addressLine1}</Text>
-      <Text>4.5</Text>
-      <Text>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </Text>
-      {/* room tags */}
-      {/* price */}
+      <View style={styles.modal}>
+        <View>
+        <ImageSlider images={item?.images} onPress={() => setVisible(false)} />
+
+        <View style={styles.viewBox}>
+          <Text style={styles.title}>{item?.name}</Text>
+
+          <View style={styles.ratingBox}>
+            <Text style={styles.title}>4.5</Text>
+            <AntDesign name="star" size={24} color="#B16421" />
+          </View>
+        </View>
+
+        <View style={styles.locationBox}>
+          <EvilIcons name="location" size={25} color="#B16421" />
+          <Text style={styles.location}>{item?.location?.addressLine1}</Text>
+        </View>
+
+        <Text style={styles.description}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </Text>
+        <View style={styles.line} />
+        <View style={{ marginHorizontal: 10 }}>
+          <Text style={[styles.title, { marginVertical: 10 }]}>
+            Room Types available in this location
+          </Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            <Tags />
+            <Tags />
+            <Tags />
+          </View>
+        </View>
+        </View>
+        <PriceButton price={"15€"} />
+      </View>
     </Modal>
   );
 };
