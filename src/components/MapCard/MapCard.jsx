@@ -1,4 +1,4 @@
-import { Text, View, ImageBackground } from "react-native";
+import { Text, View, ImageBackground, TouchableOpacity } from "react-native";
 import React from "react";
 
 import { EvilIcons } from "@expo/vector-icons";
@@ -7,10 +7,14 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./Styles";
 
 const MapCard = (props) => {
-  const { title, images, location, rating, priceFrom } = props;
+  const { title, images, location, rating, priceFrom, onPress } = props;
 
   return (
-    <View style={styles.searchBox}>
+    <TouchableOpacity
+      style={styles.searchBox}
+      activeOpacity={0.7}
+      onPress={onPress}
+    >
       <ImageBackground source={{ uri: images[0]?.url }} style={styles.image}>
         <View style={styles.imageWrapper}>
           <Text style={styles.rating}>{rating} </Text>
@@ -29,7 +33,7 @@ const MapCard = (props) => {
           From <Text style={styles.priceHighlighted}>{priceFrom}</Text>
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
