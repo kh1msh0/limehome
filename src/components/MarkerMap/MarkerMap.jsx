@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { Marker } from "react-native-maps";
 
@@ -7,7 +7,7 @@ import { styles } from "./Styles";
 const MarkerMap = (props) => {
   const { onPress, selected, latitude, longitude, item } = props;
 
-  const coordinate = { latitude: latitude, longitude: longitude };
+  const coordinate = { latitude, longitude };
   return (
     <Marker coordinate={coordinate} style={styles.box}>
       <TouchableOpacity

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Modal, SafeAreaView } from "react-native";
+import { Text, View, Modal } from "react-native";
 import React from "react";
 
 import { ImageSlider, Tags } from "components";

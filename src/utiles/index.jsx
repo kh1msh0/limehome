@@ -1,1 +1,1 @@
-export {default as CORDINATES} from './defaultCordinates'
+export {default as COORDINATES} from './defaultCoordinates'

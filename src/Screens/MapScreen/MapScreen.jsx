@@ -3,7 +3,7 @@ import MapView from "react-native-maps";
 import React, { useEffect, useState } from "react";
 
 import { MapCard, Marker, HotelModal } from "components";
-import { CORDINATES } from "utiles/defaultCordinates";
+import { COORDINATES } from "utiles/defaultCoordinates";
 import { getProperties } from "data/Api.jsx";
 
 import { styles } from "./Styles.jsx";
@@ -20,7 +20,7 @@ const MapScreen = () => {
 
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={CORDINATES}>
+      <MapView style={styles.map} initialRegion={COORDINATES}>
         {data?.map((item) => (
           <Marker
             longitude={item?.location?.lng}
